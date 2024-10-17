@@ -11,7 +11,7 @@ print("Echo Server Started Listening on PORT 4444")
 
 conn,addr = s.accept()
 print("Connected with IP : {} , PORT : {}".format(addr[0],addr[1]))
-conn.sendall("Welcome to the Simple Echo chat Server\r\n".encode())
+conn.sendall("Welcome to the Simple Echo chat Server: Type='q' to Exit\r\n".encode())
 
 
 string = ""
@@ -22,16 +22,24 @@ while True:
     if not data:
         break
    
-    string += data
+    else:
+        for char in data:
+            if char == "\b":  #checking for backspace
+                if(len(string) > 0):
+                    string = string[:-1] #remove 1 char 
+                    conn.sendall(" \b".encode()) #replace or overwirte that character with space
+            else:
+                string += char
+        
 
-    if "\n" in string:
-        fullmessage = string.strip()
-        print("Echo > {}".format(fullmessage))
-        if fullmessage == "q":
-            break
-        else:
-            conn.sendall((fullmessage + "\r\n").encode())
-        string = ""
+        if "\n" in string:
+            fullmessage = string.strip()
+            print("Echo > {}".format(fullmessage))
+            if fullmessage == "q":
+                break
+            else:
+                conn.sendall((fullmessage + "\r\n").encode())
+            string = ""
 
 s.close()
 

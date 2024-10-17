@@ -5,3 +5,4 @@
 
 ###### Client
   Use Telnet as client to communicate `telnet <host> <port>`
+  `Type 'q' to Exit the Terminal`
