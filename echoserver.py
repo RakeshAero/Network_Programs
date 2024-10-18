@@ -18,7 +18,6 @@ string = ""
 while True:
     data = conn.recv(2048)
     data = data.decode()
-    # data = data.strip()
     if not data:
         break
    
@@ -39,6 +38,7 @@ while True:
                 break
             else:
                 conn.sendall((fullmessage + "\r\n").encode())
+                #TODO: To Build a Chat server between telnet 
             string = ""
 
 s.close()
