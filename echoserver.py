@@ -4,7 +4,7 @@ host = ""
 port=4444
 
 
-s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+s = socket.socket(socket.AF_INET,socket.SOCK_STREAM) #AF_NET = IPv4 , SOCK_STREAM = TCP
 s.bind((host,port))
 s.listen()
 print("Echo Server Started Listening on PORT 4444")
