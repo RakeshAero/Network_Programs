@@ -22,7 +22,7 @@ def client_program():
         print('Received Message => {}'.format(data)) #--> Display Recieved Message
 
         message = input('--->') #-->Again send Message
-        
+    s.send(message.encode())
     s.close()
 
 if __name__ == '__main__':
